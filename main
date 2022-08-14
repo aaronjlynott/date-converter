@@ -1,0 +1,47 @@
+#take dates AD (mo/d/yr) or spelled out January 16, 2001
+#convert dates in ISO YYYY/MM/DD - if single day precede w0
+#output converted dates
+given_months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+]
+while True:
+
+    date = input('Date: ')
+
+#convert can i say if first digit number split like this elif first character a letter split like this
+# 1) split into mo/d/year
+    try:
+        month, day, year = date.split('/')
+        if (int(month) >= 1 and int(month) <= 12) and (int(day) >= 1 and int(day) <= 31):
+            break
+
+    except:
+        try:
+            sp_month, sp_day, year = date.split(' ')
+            for i in range(len(given_months)):
+                if sp_month == given_months[i]:
+                    month = i + 1
+            #remove comma
+            if ',' not in sp_day:
+                print()
+            else:
+                day = sp_day.replace(',','')
+
+            if (int(month) >= 1 and int(month) <= 12) and (int(day) >= 1 and int(day) <= 31):
+                break
+        except:
+            print()
+            pass
+
+print(f'{year}-{int(month):02}-{int(day):02}')
